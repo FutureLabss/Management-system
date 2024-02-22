@@ -9,12 +9,12 @@ export default function AdminLayOut({children}:AdminLayoutProps) {
         <>
         <Container
         sx={{
-            bgcolor: "#FFFFF",
+            bgcolor: "#F8F8FF",
           }}
           disableGutters
           maxWidth={false}>
-
-            <Stack direction="row" columnGap={0}>
+            <Stack 
+                >
             <Box>
 
             </Box>
