@@ -9,7 +9,7 @@ export default function AdminLayOut({children}:AdminLayoutProps) {
         <>
         <Container
         sx={{
-            bgcolor: "#FFFFF",
+            bgcolor: "",
           }}
           disableGutters
           maxWidth={false}>

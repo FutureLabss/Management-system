@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import AdminLayOut from '@/pagelayout/adminlayout'
 import { Box } from '@mui/material'
+import ResponsiveDrawer from '@/components/layout/drawer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,12 +18,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AdminLayOut>
-        <Box>
-          hello world
+        <ResponsiveDrawer  /> 
+        <Box sx={{ backgroundColor: "lightgray", width: "100%", height: "100vh", position: "absolute", top: 0 }}>
+          {/* Content of the Box */}
         </Box>
-
       </AdminLayOut>
-      \
     </>
   )
 }
