@@ -86,8 +86,9 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
               height: "3rem",
             }}
           >
-            {tableColumns.map((col) => (
+            {tableColumns.map((col, index) => (
               <TableCell
+              key={index}
                 sx={{ color: theme.palette.primary.main, fontWeight: 700,
                 fontSize:"1.125rem" }}
               >
@@ -110,8 +111,9 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
                     // height: "1?rem",
                   }}
                 >
-                  {tableColumns.map((col) => (
+                  {tableColumns.map((col, index) => (
                     <TableCell
+                    key={index}
                       component="th"
                       scope="row"
                       sx={{

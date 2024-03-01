@@ -5,13 +5,13 @@ import TextField from "@mui/material/TextField";
 import Link from "next/link";
 import React from "react";
 import { useState } from "react";
-import { contextProvider } from "@/context/auth";
+import { useAuthContext } from "@/context/auth";
 import CircularColor from "@/components/common/loading/buttonloading";
 
 export default function LoginPage() {
   const [data, setData] = React.useState<ILogin>({ email: "", password: "" })
   const [loading, setLoading] = React.useState(false)
-  const {AdminLogin, error} = contextProvider();
+  const {AdminLogin, error} = useAuthContext();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setData({ ...data, [name]: value });

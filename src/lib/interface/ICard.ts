@@ -5,5 +5,6 @@ export interface ICard{
     icon:IconType,
     numberofpeople:number,
     gender:string,
-    index:number,
+    field:string,
+    color?:string;
 }

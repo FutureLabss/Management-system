@@ -60,5 +60,5 @@ export default function Context ({children}: {children: ReactNode}){
         </>
     )
 }
-const contextProvider = () => useContext(usersContext)
-export {contextProvider}
+const useAuthContext = () => useContext(usersContext)
+export {useAuthContext}

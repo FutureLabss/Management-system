@@ -69,8 +69,8 @@ import {
                   </RoundButton>
                 </Link>
               </Box>
-              <Box >
-                <IconButton color="#48A2E9" >
+              <Box color="#48A2E9" >
+                <IconButton >
                 <FaCircleArrowDown  color="inherit" size={26}/>
                 </IconButton>
               </Box>
@@ -83,7 +83,7 @@ import {
               columnSpacing={{ md: 12, xs: 2, sm: 2 }}
             >
               {StatistData.map((item: ICard) => (
-                <Grid item md={4} xs={12} sm={6} display="flex">
+                <Grid item md={4} xs={12} sm={6} key={item.field} display="flex">
                   <StatisticsCard {...item} />
                 </Grid>
               ))}

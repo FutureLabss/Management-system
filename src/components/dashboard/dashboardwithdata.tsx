@@ -81,9 +81,9 @@ export default function DashBoardWithData() {
             rowSpacing={{ md: 7, xs: 2, sm: 2 }}
             columnSpacing={{ md: 12, xs: 2, sm: 2 }}
           >
-            {StatistData.map((item: ICard) => (
-              <Grid item md={4} xs={12} sm={6} display="flex">
-                <StatisticsCard {...item} />
+            {StatistData.map((item: ICard, ) => (
+              <Grid item md={4} xs={12} sm={6} key={item.field} display="flex">
+                <StatisticsCard {...item}  />
               </Grid>
             ))}
           </Grid>

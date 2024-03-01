@@ -15,7 +15,7 @@ export default function StatisticsCard(props:ICard){
             // maxWidth:"259px",
             
             px:"56px",
-            backgroundColor: props.index == 1 ? "#08B5391A" : (props.index === 2 ? "#DAC7661A" : "#AB92921A")
+            backgroundColor: props.color|| "#08B5391A" 
 
            
         }}>
