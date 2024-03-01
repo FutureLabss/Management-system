@@ -168,19 +168,13 @@ export default function AppBarLayout(props: Props) {
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="black"
         >
-          {/* <Badge  color="error"> */}
-          <IoIosNotifications color="inherit" size={33}/>
-          {/* </Badge> */}
+          <IoIosNotifications color="black" size={33}/>
         </IconButton>
       <Stack direction="row" gap="5px">
           <Avatar
           sx={{ width: 56, height: 56 }}
           src={avatar.src} />
-            {/* <Image src={avatar} alt="Travis Howard"
-              />
-          </Avatar> */}
           <Box mt="7%">
             <Typography sx={{color:"black"}}>Daniel.k.o</Typography>
             <Typography  sx={{color:"black"}}>Admin</Typography>
