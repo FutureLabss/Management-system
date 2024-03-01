@@ -1,25 +1,10 @@
 import styled from "@emotion/styled";
-import {  Button } from "@mui/material"
-type styling ={
-    background: string ;
-    RoundButton: string | number;
-    border:string;
-    variant?: string;
-}
-const RoundButton = styled(Button)(({ variant })=>{
-    const style = {
-        boxShadow: "none",
-        background:"#48A2E9",
-        padding: "10px 20px",
-        textTransform:"none",
-      }
-      if (variant == "contained") {
-        style.background = " #48A2E9"
-      }else{
-        style.background = "transparent"
-      }
-      return style
-      
+import {  Button,ButtonProps,ButtonTypeMap } from "@mui/material"
 
-})
+const RoundButton = styled(Button)<ButtonProps>(({ variant }) => `
+  background: ${variant === 'contained' ? '#48A2E9' : 'transparent' };
+  box-shadow: none;
+  padding: 10px 20px;
+  text-transform: none;
+`);
 export default RoundButton;

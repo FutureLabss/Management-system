@@ -15,11 +15,12 @@ interface AuthContextType{
 }
 const usersContext= createContext({
     auth:{},
+    error:'',
     AdminLogin: async(data: any) =>{},})
     // const [error, setError]=useState()
 
 export default function Context ({children}: {children: ReactNode}){
-    const [error, setError] = React.useState<string | null>(null); 
+    const [error, setError] = React.useState<string>(''); 
     useEffect(() => {
         let tokens = JSON.parse(localStorage.getItem("token") || "{}");
         if(tokens){
