@@ -1,30 +1,42 @@
+import AppBarLayout from "@/components/layout/appbar";
+import DrawerLayout from "@/components/layout/drawer";
 import { Box, Container, Stack } from "@mui/material";
 
 interface AdminLayoutProps {
-    children: React.ReactNode;
-  }
+  children: React.ReactNode;
+  title: string;
+}
+const drawerWidth = 240;
 
-export default function AdminLayOut({children}:AdminLayoutProps) {
-    return(
-        <>
-        <Container
+export default function AdminLayOut({ children, title }: AdminLayoutProps) {
+  return (
+    <>
+      <Container
         sx={{
-            bgcolor: "#F8F8FF",
-          }}
-          disableGutters
-          maxWidth={false}>
-            <Stack 
-                >
+          backgroundColor: "#FFFFFF",
+          // border:"solid blue",
+        }}
+        disableGutters
+        maxWidth={false}
+      >
+        <Stack direction="row" columnGap={0}>
+          <Box>
+            <DrawerLayout />
+          </Box>
+          <Box
+            sx={{
+              backgroundColor: "#F0F0F0",
+              flexGrow: 1,
+              width: { xs: "100%", sm: `calc(100% - ${drawerWidth}px)` },
+            }}
+          >
             <Box>
-
+              <AppBarLayout title={title} />
             </Box>
-            <Box>
-            {children}
-            </Box>
-            </Stack>
-        </Container>
-        
-        </>
-    )
-    
+            <Box>{children}</Box>
+          </Box>
+        </Stack>
+      </Container>
+    </>
+  );
 }

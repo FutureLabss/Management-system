@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 
 const customBreakpoints = {
-  xs: 320,
+  xs: 55,
   sm: 600,
   md: 960,
   lg: 1280,
@@ -10,18 +10,18 @@ const customBreakpoints = {
 
 let typographyList: { [key: string]: { md: string; xs: string; sm: string } } = {
   large: { xs: "24px", sm: "39px", md: "1rem" },
-  h1: {xs:"1.67em",sm:"1.67em", md:"2.78vw"}, 
-  h2: {xs:"1.33em", sm:"1.33em",md:"2.22vw"}, 
-  h3: { xs: "1.67em", sm: "1.67em", md: "2.89vw" }, 
-  h4: {xs:"1.33em", sm:"1.33em",md:"1.5rem"}, 
-  h5: { xs: "1rem", sm: "1rem", md: "1.75rem" }, 
-  h6: {xs:"1rem", sm:"1rem", md:"1.85rem"}, 
-  subtitle1: { xs:"0.82rem", sm:"1rem", md:"1.125rem"}, 
-  body1: {xs:"1rem",  sm:"0.8rem", md: "0.75rem" }, 
-  body2: {xs:"1rem",  sm:"0.875rem", md: "2rem" }, 
-  caption:{xs:"1.25rem", sm:"1.25rem", md:"1.25rem"}, 
+  h1: {xs:"1rem",sm:"2rem", md:"3rem"}, //fontsize 48
+  h2: {xs:"1.33em", sm:"1.33em",md:"2.22vw"}, //fontsize 32
+  h3: { xs: "1.67em", sm: "1.67em", md: "2.89vw" }, //fontsize 50
+  h4: {xs:"1.33em", sm:"1.33em",md:"1.5rem"}, //fontsize 24
+  h5: { xs: "1rem", sm: "1rem", md: "1.75rem" }, //fontsize 28
+  h6: {xs:"1rem", sm:"1rem", md:"1.5rem"}, //fontsize 24
+  subtitle2: { xs:"0.82rem", sm:"1rem", md:"1.25rem"}, //fontsize 20
+  subtitle1: { xs:"0.82rem", sm:"1rem", md:"1.125rem"}, //fontsize 18
+  body1: {xs:"1rem",  sm:"0.8rem", md: "0.75rem" }, //fontsize 16
+  body2: {xs:"1rem",  sm:"0.875rem", md: "0.875" }, //fontsize 14
+  caption:{xs:"0.55rem", sm:"0.55rem", md:"0.75rem"}, //fontsize 12
 };
-
 const customTypographyStyles = Object.keys(typographyList).reduce((acc: { [key: string]: any }, item: string) =>{
   const typography = typographyList[item];
   acc[item] = {
@@ -46,9 +46,11 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#48A2E9",
+      light:"#FFFFFF",
     },
     secondary: {
-      main: '#FFFFFF',
+      main: '#BF0000',
+      light:"#7C7B7B",
     },
   },
   typography: {

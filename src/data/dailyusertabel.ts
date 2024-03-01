@@ -1,0 +1,66 @@
+import { ICreateData } from "../lib/interface/ITabel";
+
+// Username: string,
+// Email: string,
+// Role: string,
+// Skills: string,
+// clockedin: string,
+// clockedout: string,
+// img:string
+const TableData: ICreateData[] = [
+  {
+    username: " products",
+    img: "N3,000",
+    email: "26th Sept, 2023",
+    role: "10:30am",
+    skills: "Gold Nseuwem",
+    clockedin: "Pending",
+    clockedout: "Flutterwave",
+  },
+  {
+    username: "products",
+    img: "N3,000",
+    email: "26th Sept, 2023",
+    role: "10:30am",
+    skills: "Gold Nseuwem",
+    clockedin: "Pending",
+    clockedout: "Flutterwave",
+  },
+  {
+    username: " products",
+    img: "N3,000",
+    email: "26th Sept, 2023",
+    role: "10:30am",
+    skills: "Gold Nseuwem",
+    clockedin: "Pending",
+    clockedout: "Flutterwave",
+  },
+  {
+    username: "products",
+    img: "N3,000",
+    email: "26th Sept, 2023",
+    role: "10:30am",
+    skills: "Gold Nseuwem",
+    clockedin: "Pending",
+    clockedout: "Flutterwave",
+  },
+  {
+    username: "products",
+    img: "N3,000",
+    email: "26th Sept, 2023",
+    role: "10:30am",
+    skills: "Gold Nseuwem",
+    clockedin: "Pending",
+    clockedout: "Flutterwave",
+  },
+  {
+    username: "products",
+    img: "N3,000",
+    email: "26th Sept, 2023",
+    role: "10:30am",
+    skills: "Gold Nseuwem",
+    clockedin: "Pending",
+    clockedout: "Flutterwave",
+  },
+];
+export default TableData;
