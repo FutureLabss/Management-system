@@ -5,7 +5,6 @@ import StatisticsCard from "./card";
 
 export default function UsersStatis(){
     return(
-        <>
         <Grid
             container
             rowSpacing={{ md: 7, xs: 2, sm: 2 }}
@@ -18,6 +17,5 @@ export default function UsersStatis(){
             ))}
           </Grid>
         
-        </>
     )
 }

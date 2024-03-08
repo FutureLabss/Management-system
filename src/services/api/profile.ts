@@ -41,11 +41,15 @@ export async function getProfile(): Promise<UserModel[]> {
     );
 }
 
-export async function getProfileDetail(id: string):Promise<> {
-  return axios.get<UserModel>(`/profile/admin/${id}`)
-  .then((res: AxiosResponse<UserModel>)=>{
-    console.log(res.data)
+export async function getProfileDetail(id: string) :Promise<UserModel> {
+  return axios
+  .get<UserModel>(`/profile/admin/${id}`)
+  .then((response)=>{
+    console.log(response.data)
+    return response.data;
   }).catch((e)=>{
-    console.log(e)
+    const message = e.response?.data?.message || "Network Error";
+    console.log(message)
+    throw new Error(message);
   })
 }

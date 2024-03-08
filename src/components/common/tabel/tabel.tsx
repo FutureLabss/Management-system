@@ -7,15 +7,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Avatar, Box, IconButton,Chip, Stack, Typography, useTheme } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
 import { UserModel } from "@/lib/interface/Iregister";
 import { getProfile } from "@/services/api/profile";
 import TableLoading from "../loading/tableloading";
-// import OrderModal from '../modal/ordermodal';
 import avatar from '../../../images/avatar.png'
 import SuggestionModal from "../modal/deactivationmodal/suggestmodal";
 import { useDeactivateUser } from "@/hooks/mutation/deactivate";
 import BasicPagination from "../pagination/paginaton";
+import { useGetSingleUser } from "@/hooks/query/getsingleuser";
+import { useRouter } from "next/router";
 
 
 
@@ -44,6 +44,11 @@ export default function UserManagementTable({ clickable }: { clickable: boolean 
   const [isActive, setIsActive] = React.useState(true);
   const [open, setOpen] = React.useState<string | null>(null);
   const {mutate:deactivate, isLoading}= useDeactivateUser({ onSuccess: () => {} });
+
+  const router = useRouter();
+  const {id}:any = router.query
+  const {data:singleUser } = useGetSingleUser(id)
+  console.log(singleUser)
 
   const handleOpenModal = (userId: string) => {
     setOpen(userId);
@@ -83,7 +88,8 @@ export default function UserManagementTable({ clickable }: { clickable: boolean 
 
   const handleEdit = () => {};
 
-  const handleRedirect =(row: string)=>{
+  const handleRedirect =(id: string)=>{
+    router.push(`/users/${id}`);
 
   }
 
@@ -115,7 +121,7 @@ export default function UserManagementTable({ clickable }: { clickable: boolean 
         <TableBody>
           {loading ? (
             <TableLoading />
-          ) : (
+          ) : data ? (
             <>
               {data.map((row: UserModel) => (
                 <TableRow
@@ -166,7 +172,7 @@ export default function UserManagementTable({ clickable }: { clickable: boolean 
                 </TableRow>
               ))}
             </>
-          )}
+          ): (<>no data</>)}
         </TableBody>
       </Table>
       <SuggestionModal open={!!open} onClose={handleCloseModal} userId={open} onDeactivate={handleDeactivateUser} />

@@ -8,21 +8,12 @@ import {
     useTheme,
   } from "@mui/material";
   import SearchIcon from "@mui/icons-material/Search";
-  import { styled, alpha } from "@mui/material/styles";
-  import InputBase from "@mui/material/InputBase";
   import InputAdornment from "@mui/material/InputAdornment";
   import IconButton from "@mui/material/IconButton";
   import { IoIosAddCircleOutline } from "react-icons/io";
   import RoundButton from "../roundbutton/roundbutton";
   import { RiTornadoFill } from "react-icons/ri";
-  import StatistData from "@/data/carddata";
-  import { ICard } from "@/lib/interface/ICard";
   import Link from 'next/link'
-  import AdminLayOut from "@/layout/admin";
-  import SuggestionModal from "@/components/common/modal/deactivationmodal/suggestmodal";
-  import { useState } from "react";
-  import UsersStatis from "@/components/common/card/usersstatis";
-
 
 export default function SearchInput(){
     return(

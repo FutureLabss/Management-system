@@ -27,6 +27,9 @@ export interface IAPIFilter {
     data?: IReturn;
     status: string;
   }
+  export interface IQueryOptions {
+    enabled: boolean;
+  }
   
 //   export interface IPaginatedReturns<IReturn = unknown> {
 //     count(count: any): unknown;
