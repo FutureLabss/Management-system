@@ -59,7 +59,7 @@ export default function UserManagementTable({ clickable }: { clickable: boolean 
   }
   const handleDeactivateUser = (userId: string) => {
     deactivate(userId)
-    setIsActive(true)
+    setIsActive(false)
    console.log(userId)
   };
 
