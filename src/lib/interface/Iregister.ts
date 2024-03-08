@@ -14,16 +14,19 @@ export enum Role {
 export interface CreateUserModel {
   fullName: string;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   department: string;
   gender: Gender;
   role: Role;
-  avatarUrl?: string | null;
+  avatarUrl?: string;
 }
 
 export interface UserModel extends CreateUserModel {
   id: string;
-  status:string
+  status:string;
   lastClockedIn:string
   lastClockedOut:string
+}
+
+export interface DashBoardUser extends UserModel{
 }

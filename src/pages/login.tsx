@@ -39,9 +39,10 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             mx: "auto",
             border: "1px solid #48A2E9",
             background: "#FFFFFF",
-            width: "100%",
+            width: {xs:"100%"},
             maxWidth: "600px",
-            minHeight: "70vh",
+            // minHeight: "70vh",
+            // height:"100%",
             mt: "9rem",
             mb: "9rem",
             py: "3rem",
@@ -72,6 +73,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           <Box sx={{ mt: "3rem" }}>
             <TextField fullWidth
             name="password"
+            type="password"
             value={data.password}
             onChange={handleChange}
              label="Enter Password" 

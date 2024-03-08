@@ -24,16 +24,17 @@ export default function Context ({children}: {children: ReactNode}){
     useEffect(() => {
         let tokens = JSON.parse(localStorage.getItem("token") || "{}");
         if(tokens){
-            setToken(tokens?.key);
+            setToken(tokens?.token);
                 }
       }, []);
+      
       
     const AdminLogin = async(data: ILogin)=>{
         const Promise = await axios
         .post("/auth/login", data)
         .then((res)=>{
           localStorage.setItem('token', JSON.stringify(res.data));
-          setToken(res.data.key);
+          setToken(res.data.token);
           console.log(res.data)
           router.push("/dashboard")
         })

@@ -10,10 +10,10 @@ const customBreakpoints = {
 
 let typographyList: { [key: string]: { md: string; xs: string; sm: string } } = {
   large: { xs: "24px", sm: "39px", md: "1rem" },
-  h1: {xs:"1rem",sm:"2rem", md:"3rem"}, //fontsize 48
-  h2: {xs:"1.33em", sm:"1.33em",md:"2.22vw"}, //fontsize 32
-  h3: { xs: "1.67em", sm: "1.67em", md: "2.89vw" }, //fontsize 50
-  h4: {xs:"1.33em", sm:"1.33em",md:"1.5rem"}, //fontsize 24
+  h1: {xs:"1.5rem",sm:"2.5rem", md:"3rem"}, //fontsize 48
+  h2: {xs:"1.33em", sm:"1.33em",md:"2rem"}, //fontsize 32
+  h3: { xs: "1.67em", sm: "1.67em", md: "2rem" }, //fontsize 50
+  h4: {xs:"1rem", sm:"1.5rem",md:"1.5rem"}, //fontsize 24
   h5: { xs: "1rem", sm: "1rem", md: "1.75rem" }, //fontsize 28
   h6: {xs:"1rem", sm:"1rem", md:"1.5rem"}, //fontsize 24
   subtitle2: { xs:"0.82rem", sm:"1rem", md:"1.25rem"}, //fontsize 20

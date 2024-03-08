@@ -26,12 +26,16 @@ import {RiListOrdered2} from "react-icons/ri"
 import {MdPerson} from "react-icons/md"
 import {GiWallet} from "react-icons/gi"
 import {RiLogoutBoxRLine} from "react-icons/ri"
-// import Image from 'next/image';
-// import logo from "../../../images/logo.png"
 import Link from 'next/link';
 import theme from '@/styles/theme/theme';
-import { Badge } from '@mui/icons-material';
 import { IoIosNotifications } from "react-icons/io";
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import { FaUpDownLeftRight } from "react-icons/fa6";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { DRAWER_WIDTH } from '@/lib/constants/layout';
+
 
 interface Props {
   /**
@@ -42,7 +46,6 @@ interface Props {
   title:string;
 }
 
-const drawerWidth = 240;
 
 export default function AppBarLayout(props: Props) {
   const { window, title } = props;
@@ -51,82 +54,118 @@ export default function AppBarLayout(props: Props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+
 
   const drawer = (
     <Box onClick={handleDrawerToggle} padding="10px">
       <Link href="/">
       <Box >
-           <Typography variant="h1">WATCHLIST</Typography>
+           <Typography variant="h1" sx={{color:theme.palette.primary.main}}>WATCHLIST</Typography>
         </Box>
       </Link>
-      {/* <Divider /> */}
-      <List>
-      {[
-          { text: "Dashboard", to: "/dashboard", icon: LuLayoutDashboard },
-          { text: "User Management", to: "/management", icon: MdPerson },
-        ].map((item, index) => (
-          <Link href={item.to} key={item.to} style={{ textDecoration: "none" }}>
-          <ListItem
-            key={index}
-            disableGutters
-            disablePadding
-            sx={{
-              // px:"15px",
-              px: { xs: "15px", md: "2vw" },
-              color: theme.palette.primary.main,
-              textDecoration:"none",
-              py:"15px"
-            }}
-          >
-              <ListItemButton>
-            <Stack
-              direction="row"
-              alignItems="center"
-              gap="10px"
-            >
-              <Box>
-                <item.icon fontSize={"inherit"} />
-              </Box>
-              <ListItemText
-                primary={
-                  <Typography variant='h6' sx={{color:theme.palette.primary.main}}>
-                    {item.text}
-                  </Typography>
-                }
-              />
-            </Stack>
-              </ListItemButton>
-          </ListItem>
-        </Link>
-          ))}
-           <ListItem
-          disableGutters
-          disablePadding
-          sx={{
-            // py: "1.25vw",
-            mt: "70vw",
-            px: "15%",
-            cursor: "pointer",
-          }}
-        >
-          <Stack
-            direction="row"
-            alignItems="center"
-            //  pr={{xs:"70px",md:"5.14vw"}}
-          >
-            <Box mr={{ xs: "17px", md: "1.25vw" }}>
-              <RiLogoutBoxRLine />
-            </Box>
-            <ListItemText
-              primary={
-                <Typography fontSize={{ xs: "0.75em", md: "1.25vw" }}>
-                  LogOut
-                </Typography>
-              }
-            />
-          </Stack>
-        </ListItem>
-      </List>
+    <Stack mt="4rem" gap="3rem" >
+  <Link href="/dashboard">
+    <Stack
+      direction="row"
+      alignItems="center"
+      sx={{
+        "&:hover": {
+          backgroundColor: theme.palette.primary.main,
+          borderRadius: "10px",
+          color: theme.palette.primary.light,
+          px: "4rem",
+          py: "1rem",
+        },
+      }}
+    >
+      <Box mr={{ xs: "17px", md: "1.25vw" }} sx={{ fontSize: "20px", mt: "0.5rem" }}>
+        <LuLayoutDashboard fontSize={"inherit"} color="#48A2E9" />
+      </Box>
+      <Box>
+        <Typography variant="h5" sx={{ color: theme.palette.primary.main }}>
+          Dashboard
+        </Typography>
+      </Box>
+    </Stack>
+  </Link>
+
+  {/* Accordion */}
+  <Accordion  
+  style={{ boxShadow: "none", padding:"0px"}}
+   expanded={expanded === "panel1"} 
+   onChange={handleChange("panel1")}>
+    <AccordionSummary
+     sx={{ padding:"0px"}}
+      expandIcon={<ExpandMoreIcon />}
+      aria-controls="panel1bh-content"
+      id="panel1bh-header"
+    >
+      <Box display="flex" alignItems="center">
+        <Box sx={{ fontSize: "20px", mt: "0.5rem" }}>
+          <FaUpDownLeftRight fontSize={"inherit"} color="#48A2E9" />
+        </Box>
+        <Typography variant="h5" sx={{ ml: 1, color: theme.palette.primary.main }}>
+          User Management
+        </Typography>
+      </Box>
+    </AccordionSummary>
+    <AccordionDetails>
+      <Link href="">
+      <Box mt="-2rem" display="flex" flexDirection="row" justifyContent="center">
+      <Typography>
+      User History
+      </Typography>
+      </Box>
+      </Link>
+      <Link  href="">
+      <Box display="flex" flexDirection="row" justifyContent="center" mt="1rem">
+      <Typography>
+      Present / Absent Users
+      </Typography>
+      </Box>
+      </Link>
+      <Link  href="">
+      <Box display="flex" flexDirection="row" justifyContent="center" mt="1rem">
+      <Typography>
+      Deactivated Users
+      </Typography>
+      </Box>
+      </Link>
+    </AccordionDetails>
+  </Accordion>
+
+  {/* Link to LogOut */}
+  <Link href="/logout">
+    <Stack
+      direction="row"
+      alignItems="center"
+      sx={{
+        "&:hover": {
+          backgroundColor: theme.palette.primary.main,
+          borderRadius: "10px",
+          color: theme.palette.primary.light,
+          px: "4rem",
+          py: "1rem",
+        },
+      }}
+    >
+      <Box mr={{ xs: "17px", md: "1.25vw" }} sx={{ fontSize: "20px", mt: "0.5rem" }}>
+        <RiLogoutBoxRLine fontSize={"inherit"} color="#48A2E9" />
+      </Box>
+      <Box>
+        <Typography variant="h5" sx={{ color: theme.palette.primary.main }}>
+          LogOut
+        </Typography>
+      </Box>
+    </Stack>
+  </Link>
+</Stack>
     </Box>
   );
 
@@ -139,7 +178,7 @@ export default function AppBarLayout(props: Props) {
       sx={{
         background:"#FFF",
         // width:{md:"78.5%", xs:"100%"}
-        width:{xs:"100%", md:`calc(100% - ${drawerWidth}px)`}
+        width:{xs:"100%", md:`calc(100% - ${DRAWER_WIDTH})`}
 
       }}>
         <Toolbar> 
@@ -148,14 +187,14 @@ export default function AppBarLayout(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: 'block', md:"none" } }}
           >
-            <MenuIcon />
+            <MenuIcon fontSize="large"  />
           </IconButton>
           <Typography
             variant="h4"
             component="div"
-            sx={{  display: { xs: 'none', sm: 'block' }, ml:"%",
+            sx={{  display: { xs: 'none', sm: 'block' }, ml:"2%",
         color:theme.palette.primary.main,
         flexGrow: 20,
         // mr:15
@@ -192,13 +231,13 @@ export default function AppBarLayout(props: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: 'block', sm: 'block' },
             '& .MuiDrawer-paper': { 
               boxSizing: 'border-box',
-             width: drawerWidth,
+             width: DRAWER_WIDTH,
              background: "#FFF",
              padding:"10px",
              color:"white" },

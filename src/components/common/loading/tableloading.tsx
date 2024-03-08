@@ -116,7 +116,7 @@ export default function TabelLoading() {
           />
           
         </TableCell>
-        <TableCell sx={{ fontSize: { xs: "0.67em", md: "1.11vw" } }}>
+        {/* <TableCell sx={{ fontSize: { xs: "0.67em", md: "1.11vw" } }}>
           <Stack direction="row" gap="2rem">
           <Skeleton
             animation="wave"
@@ -137,7 +137,7 @@ export default function TabelLoading() {
             style={{ marginBottom: 6 }}
           />
           </Stack>
-        </TableCell>
+        </TableCell> */}
         
       </TableRow>
     );

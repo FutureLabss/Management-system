@@ -6,15 +6,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import TableData from "../../data/dailyusertabel";
-import { ICreateData } from "../../lib/interface/ITabel";
 import { Avatar, Box, IconButton,Chip, Stack, Typography, useTheme } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import { UserModel } from "@/lib/interface/Iregister";
 import { getProfile } from "@/services/api/profile";
-import TableLoading from "../common/loading/tableloading";
+import TableLoading from "../loading/tableloading";
 // import OrderModal from '../modal/ordermodal';
-import avatar from '../../images/avatar.png'
+import avatar from '../../../images/avatar.png'
+import SuggestionModal from "../modal/deactivationmodal/suggestmodal";
+import { useDeactivateUser } from "@/hooks/mutation/deactivate";
+import BasicPagination from "../pagination/paginaton";
 
 
 
@@ -31,24 +32,37 @@ const tableColumns: TableColum[] = [
   { title: "Skills", field: "department" },
   { title: "Last clocked-in", field: "lastClockedIn" },
   { title: "Last clocked-out", field: "lastClockedOut" },
-  // { title: "Action", field: "Action" },
+  { title: "Action", field: "Action" },
 ];
 
-export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
+export default function UserManagementTable({ clickable }: { clickable: boolean }) {
   const theme = useTheme();
   // const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState<UserModel[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
-  // const handleRowOpen = (item: ICreateData) => {
-  //   if (clickable) {
-  //     setSelectedItem(item)
-  //     setOpen(true);
-  //   }
-  // };
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const [isActive, setIsActive] = React.useState(true);
+  const [open, setOpen] = React.useState<string | null>(null);
+  const {mutate:deactivate, isLoading}= useDeactivateUser({ onSuccess: () => {} });
+
+  const handleOpenModal = (userId: string) => {
+    setOpen(userId);
+  }
+
+  const handleCloseModal = () => {
+    setOpen(null);
+  }
+  const handleDeactivateUser = (userId: string) => {
+    deactivate(userId)
+    setIsActive(true)
+   console.log(userId)
+  };
+
+  const handleReactivate=(userId: string)=>{
+    deactivate(userId)
+    setIsActive(true)
+  }
+
 
   React.useEffect(() => {
     setLoading(true);
@@ -67,9 +81,17 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
       });
   }, []);
 
+  const handleEdit = () => {};
+
+  const handleRedirect =(row: string)=>{
+
+  }
+
   return (
+    <Box>
     <TableContainer
       component={Paper}
+     
     >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -97,7 +119,7 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
             <>
               {data.map((row: UserModel) => (
                 <TableRow
-                  // onClick={() => handleRowOpen(row)}
+                  onClick={() => handleRedirect(row.id)}
                   key={row.id ?? "34r3r"}
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -117,13 +139,24 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
                         },
                         color:"#7C7B7B",
                         minWidth:"120px"
-                        // pt: "40px",
                       }}
                     >
                       {col.field === "fullName" ? (
                       <Stack direction="row" alignItems="center" gap="1rem">
                         <Avatar src={avatar.src} sx={{width:"30px", height:"30px"}}/>
                         <Typography>{row.fullName}</Typography>
+                      </Stack>
+                      ) : col.field === "Action" ? (
+                      <Stack direction="row" alignItems="center" gap="3rem">
+                        <Chip
+                          size="small"
+                          label={isActive ? "Deactivate" : "Enable"} 
+                          color={isActive ? "secondary" : "primary"}
+                          onClick={() => isActive ? handleOpenModal(row.id) : handleReactivate(row.id)} 
+                      />
+                        <IconButton size="small" aria-label="edit" onClick={() => handleEdit()}>
+                          Edit
+                        </IconButton>
                       </Stack>
                       ) : (
                       row[col.field as keyof UserModel]
@@ -136,8 +169,11 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
           )}
         </TableBody>
       </Table>
-      {/* <OrderModal 
-      open={open} onClose={handleClose} items={selectedItem} /> */}
+      <SuggestionModal open={!!open} onClose={handleCloseModal} userId={open} onDeactivate={handleDeactivateUser} />
     </TableContainer>
+    <Box>
+      <BasicPagination />
+    </Box>
+    </Box>
   );
 }

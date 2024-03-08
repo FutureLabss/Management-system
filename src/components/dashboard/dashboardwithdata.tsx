@@ -19,79 +19,28 @@ import { RiTornadoFill } from "react-icons/ri";
 import StatistData from "@/data/carddata";
 import { ICard } from "@/lib/interface/ICard";
 import StatisticsCard from "../common/card/card";
-
-
-import Link from 'next/link'
+import Link from "next/link";
+import DashoardUsers from "./card";
+import UsersStatis from "../common/card/usersstatis";
+import SearchInput from "../common/search/search";
 
 export default function DashBoardWithData() {
   return (
     <>
-      <Box px="3rem" py="2rem" >
-        <Stack
-          direction={{ md: "row", xs: "column", sm: "column" }}
-          gap={5}
-          justifyContent="end"
-          alignItems="end"
-        >
-          <Box width="100%" maxWidth="500px">
-            <TextField
-              fullWidth
-              type={"text"}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      edge="end"
-                    >
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              label="Search..."
-            />
-          </Box>
-          <Stack direction="row" gap="1rem">
-            <Box>
-              <Link href="/registeruser">
-                <RoundButton
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    color: "#fff",
-                    fontSize: "1.5rem",
-                  }}
-                  endIcon={<IoIosAddCircleOutline />}
-                >
-                  Register New User
-                </RoundButton>
-              </Link>
-            </Box>
-            <Box>
-              <IconButton>
-                <RiTornadoFill />
-              </IconButton>
-            </Box>
-          </Stack>
-        </Stack>
+      <Stack direction="column" rowGap={{xs:"1.5em",md:"3em"}}>
         <Box>
-          <Grid
-            container
-            rowSpacing={{ md: 7, xs: 2, sm: 2 }}
-            columnSpacing={{ md: 12, xs: 2, sm: 2 }}
-          >
-            {StatistData.map((item: ICard, ) => (
-              <Grid item md={4} xs={12} sm={6} key={item.field} display="flex">
-                <StatisticsCard {...item}  />
-              </Grid>
-            ))}
-          </Grid>
+          <SearchInput />
+        </Box>
+        <Box>
+          <UsersStatis />
         </Box>
         <Box>
           <DailyUserTabel clickable={false} />
         </Box>
-      </Box>
+        <Box>
+          <DashoardUsers />
+        </Box>
+      </Stack>
     </>
   );
 }
