@@ -3,9 +3,9 @@ import axios, { AxiosResponse } from "axios";
 import { FaLastfmSquare } from "react-icons/fa";
 
 
-export async function DeactivateUserApi(id: string): Promise<IDeactivationUser> {
+export async function DeactivateUserApi(id: string,status:boolean): Promise<IDeactivationUser> {
     const data = {
-        "isActive": true
+        "isActive": status
     };
     return axios.put<IDeactivationUser>(`/profile/admin/updateStatus/${id}`, data,
     {

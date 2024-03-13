@@ -6,28 +6,29 @@ import Link from "next/link";
 import React from "react";
 import CardLoading from "../common/loading/cardloading";
 import avatar from "../../images/avatar.png";
+import { useGetUsers } from "@/hooks/query/allusers";
 
 export default function DashoardUsers() {
   const theme = useTheme();
-  const [data, setData] = React.useState<UserModel[]>([]);
-  const [loading, setLoading] = React.useState(true);
+  const {data:users, loading } = useGetUsers();
+  // const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    setLoading(true);
-    getProfile()
-      .then((resp) => {
-        console.log({ resp });
-        if (resp.length) {
-          setData([...resp]);
-        }
-      })
-      .catch((e) => {
-        //handle error
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   setLoading(true);
+  //   getProfile()
+  //     .then((resp) => {
+  //       console.log({ resp });
+  //       if (resp.length) {
+  //         setData([...resp]);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       //handle error
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -53,9 +54,9 @@ export default function DashoardUsers() {
           </Typography>
           {loading ? (
             <CardLoading />
-          ) : (
+          ) : users ? (
             <>
-              {data.map((items: UserModel) => (
+              {users?.map((items: UserModel) => (
                 <Box key={items.id}>
                   <Stack
                     sx={{
@@ -103,7 +104,7 @@ export default function DashoardUsers() {
                 </Box>
               ))}
             </>
-          )}
+          ) : <>No Data yet</>}
         </Card>
 
         <Card
@@ -122,9 +123,9 @@ export default function DashoardUsers() {
           </Typography>
           {loading ? (
             <CardLoading />
-          ) : (
+          ) : users ? (
             <>
-              {data.map((items: UserModel) => (
+              {users?.map((items: UserModel) => (
                 <Box key={items.id}>
                   <Stack
                     sx={{
@@ -171,7 +172,7 @@ export default function DashoardUsers() {
                 </Box>
               ))}
             </>
-          )}
+          ): <>No data yet</>}
         </Card>
       </Stack>
     </>

@@ -1,19 +1,12 @@
 import {
     Box,
-    Button,
-    Grid,
     Stack,
-    TextField,
-    Typography,
-    useTheme,
   } from "@mui/material";
-  import SearchIcon from "@mui/icons-material/Search";
-  import { styled, alpha } from "@mui/material/styles";
-  import InputBase from "@mui/material/InputBase";
   import UserManagementTable from "../../components/common/tabel/tabel";
-  import AdminLayOut from "@/layout/admin";
+  import AdminLayOut from "../../layout/admin";
   import SearchInput from "../../components/common/search/search"
   import UsersStatis from "../../components/common/card/usersstatis"
+  
 
   export default function UserManagement() {
   
@@ -27,7 +20,7 @@ import {
             <UsersStatis /> 
           </Box>
           <Box>
-            <UserManagementTable clickable={true} />
+            <UserManagementTable  />
           </Box>
         </Stack>
       </AdminLayOut>

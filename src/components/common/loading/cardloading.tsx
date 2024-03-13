@@ -6,10 +6,9 @@ export default function CardLoading() {
   return (
     <Stack spacing={1} direction="row" justifyContent="space-between">
       <Stack direction="row" gap="1rem">
-      <Skeleton variant="circular" width={30} height={30} />
-      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="rectangular" width={310} height={80} />
       </Stack>
-      <Skeleton variant="rounded" width={210} height={60} />
+      <Skeleton variant="rounded" width={910} height={80} />
     </Stack>
   );
 }

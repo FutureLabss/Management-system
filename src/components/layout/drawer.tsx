@@ -28,37 +28,47 @@ import { FaUpDownLeftRight } from "react-icons/fa6";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DRAWER_WIDTH } from "@/lib/constants/layout";
 import { IconType } from "react-icons";
+import { useAuthContext } from "@/context/auth";
 
 interface NavLinks {
   title: string;
   path: string;
   icon: IconType;
   children?: Omit<NavLinks, "icon">[];
+  onClick?: () => void;
 }
-const links: NavLinks[] = [
-  { title: "Dashboard", icon: LuLayoutDashboard, path: "/dashboard" },
-  {
-    title: "User Management",
-    path: "/users",
-    icon: FaUpDownLeftRight,
-    children: [
-      { title: "User History", path: "" },
-      { title: "Present / Absent Users", path: "" },
-      { title: "Deactivated Users", path: "" },
-    ],
-  },
-  { title: "Log Out", icon: RiLogoutBoxRLine, path: "/logout" },
-];
 
 export default function DrawerLayout() {
   const router = useRouter();
   const currentPage = router.pathname;
   const [expanded, setExpanded] = React.useState<string | false>(false);
-
+  const {islLoggedIn, logout}=useAuthContext()
+  
   const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+  (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+  
+  const handleLogout = ()=>{
+    console.log("logging out.....")
+   logout();
+    router.push('/login'); 
+   
+  };
+  const links: NavLinks[] = [
+    { title: "Dashboard", icon: LuLayoutDashboard, path: "/dashboard" },
+    {
+      title: "User Management",
+      path: "/users",
+      icon: FaUpDownLeftRight,
+      children: [
+        { title: "User History", path: "" },
+        { title: "Present / Absent Users", path: "/users/presentusers" },
+        { title: "Deactivated Users", path: "" },
+      ],
+    },
+    { title: "Log Out", icon: RiLogoutBoxRLine, path: "", onClick: handleLogout},
+  ];
 
   return (
     <>
@@ -75,7 +85,7 @@ export default function DrawerLayout() {
               background: theme.palette.primary.light,
               // padding:"5rem",
               color: theme.palette.primary.main,
-              py: "3rem",
+              py: "1rem",
             },
           }}
           variant="permanent"
@@ -108,7 +118,7 @@ export default function DrawerLayout() {
                   <AccordionSummary
                     sx={{ padding: "0px" }}
                     expandIcon={ item.children ? <ExpandMoreIcon />:<></>}
-                    aria-controls="panel1bh-content"
+                    aria-controls="panel1bh-content" 
                     id="panel1bh-header"
                   >
                     <Box display="flex" alignItems="center">
@@ -150,3 +160,4 @@ export default function DrawerLayout() {
     </>
   );
 }
+

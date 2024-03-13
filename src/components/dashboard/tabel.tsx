@@ -15,6 +15,7 @@ import { getProfile } from "@/services/api/profile";
 import TableLoading from "../common/loading/tableloading";
 // import OrderModal from '../modal/ordermodal';
 import avatar from '../../images/avatar.png'
+import { useGetUsers } from "@/hooks/query/allusers";
 
 
 
@@ -37,9 +38,10 @@ const tableColumns: TableColum[] = [
 export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
   const theme = useTheme();
   // const [open, setOpen] = React.useState(false);
-  const [data, setData] = React.useState<UserModel[]>([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
+  // const [data, setData] = React.useState<UserModel[]>([]);
+  // const [loading, setLoading] = React.useState(true);
+  // const [error, setError] = React.useState<string | null>(null);
+  const {data:users, loading } = useGetUsers();
   // const handleRowOpen = (item: ICreateData) => {
   //   if (clickable) {
   //     setSelectedItem(item)
@@ -50,22 +52,22 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
   //   setOpen(false);
   // };
 
-  React.useEffect(() => {
-    setLoading(true);
-    getProfile()
-      .then((resp) => {
-        console.log({resp})
-        if (resp.length) {
-          setData([...resp]);
-        }
-      })
-      .catch((e) => {
-        //handle error
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   setLoading(true);
+  //   getProfile()
+  //     .then((resp) => {
+  //       console.log({resp})
+  //       if (resp.length) {
+  //         setData([...resp]);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       //handle error
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   return (
     <TableContainer
@@ -93,9 +95,9 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
         <TableBody>
           {loading ? (
             <TableLoading />
-          ) : (
+          ) : users ? (
             <>
-              {data.map((row: UserModel) => (
+              {users.map((row: UserModel) => (
                 <TableRow
                   // onClick={() => handleRowOpen(row)}
                   key={row.id ?? "34r3r"}
@@ -127,13 +129,13 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
                       </Stack>
                       ) : (
                       row[col.field as keyof UserModel]
-                      )}
+                    )}
                      </TableCell>
                   ))}
                 </TableRow>
               ))}
             </>
-          )}
+          ):(<Typography>NO data yet</Typography>)}
         </TableBody>
       </Table>
       {/* <OrderModal 
@@ -141,3 +143,5 @@ export default function DailyUserTabel({ clickable }: { clickable: boolean }) {
     </TableContainer>
   );
 }
+
+

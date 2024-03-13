@@ -27,6 +27,7 @@ export default function AdminLayOut({ children, title }: AdminLayoutProps) {
               backgroundColor: "#F0F0F0",
               flexGrow: 1,
               width: { xs: "100%", sm: `calc(100% - ${DRAWER_WIDTH})` },
+              minHeight: `calc(100vh - 20px)` ,
             }}
           >
             <Box>

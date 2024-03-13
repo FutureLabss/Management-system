@@ -25,7 +25,7 @@ export interface CreateUserModel {
 
 export interface UserModel extends CreateUserModel {
   id: string;
-  status:string;
+  status:boolean;
   lastClockedIn:string
   lastClockedOut:string
 }

@@ -5,9 +5,9 @@ import { DeactivateUserApi } from "@/services/api/status";
 import { IDeactivation, IDeactivationUser } from "@/lib/interface/imodal";
 
 export function useDeactivateUser({ onSuccess }: IMutationHook) {
-  const deactivateUserArgs: IMutationArgs<string, IDeactivationUser> = {
-    key: ["deactivate"],
-    callback:(id: string) => DeactivateUserApi(id),
+  const deactivateUserArgs: IMutationArgs<UserModel, IDeactivationUser> = {
+    key: ["users"],
+    callback:(user: UserModel) => DeactivateUserApi(user.id,!user.status),
     onSuccess: onSuccess,
   };
 
