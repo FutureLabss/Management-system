@@ -17,6 +17,8 @@ export default function AdminLayOut({ children, title }: AdminLayoutProps) {
   useEffect(() => {
     if (!islLoggedIn) {
       router.push("/login");
+    } else {
+      router.push("/dashboard");
     }
   }, [islLoggedIn, router]);
 
