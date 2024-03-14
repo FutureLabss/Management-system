@@ -74,7 +74,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               name="email"
               value={data.email}
               onChange={handleChange}
-              defaultValue="Enter Email "
+              placeholder="Enter Email"
               id="fullWidth"
               sx={{ border: "#48A2E9" }}
             />
@@ -85,7 +85,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             name="password"
             value={data.password}
             onChange={handleChange}
-            defaultValue="Enter Password"
+            placeholder="Enter Password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
