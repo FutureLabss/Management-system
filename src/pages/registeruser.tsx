@@ -24,6 +24,7 @@ import CircularColor from "@/components/common/loading/buttonloading";
 import { useRouter } from "next/router";
 import { GoDotFill } from "react-icons/go";
 import { useRegisterUser } from "@/hooks/mutation/registeruser";
+import SuccessModal from "@/components/common/modal/deactivationmodal/successModal";
 
 const currencies = [
   {
@@ -33,14 +34,6 @@ const currencies = [
   {
     value: "user",
     title: "User",
-  },
-  {
-    value: "manager",
-    title: "Manager",
-  },
-  {
-    value: "employee",
-    title: "Employee",
   },
 ];
 const department = [
@@ -67,14 +60,15 @@ export default function RegistrationPage() {
     gender: Gender.Female,
     role: Role.User,
   });
-  // const [loading, setLoading] = React.useState(false);
-  // const [error, setError] = React.useState<string[]>([]);
+
   const router = useRouter();
+  // const [openSuccessModal, setOpenSuccessModal] = React.useState(false);
   const {
     mutate: registeruser,
     isLoading,
     error: mutationError,
   } = useRegisterUser({ onSuccess: () => {} });
+
   let error:  string[] = [];
   console.log({ registeruser });
 
@@ -85,14 +79,21 @@ export default function RegistrationPage() {
     console.log(value);
   };
 
-  const addUser = (event: React.FormEvent) => {
+  const addUser =  async (event: React.FormEvent) => {
     event.preventDefault();
-    //form validation
-
-    console.log({ value });
-    registeruser(value);
+    try{
+     await registeruser(value);
+      // setOpenSuccessModal(true);
+      router.push("/users")
+    }catch(error){
+      console.log("Error in creating a user:", error);
+    }
 
   };
+
+  // const handleCloseSuccessModal = () => {
+  //   setOpenSuccessModal(false);
+  // };
 
   if (mutationError) {
     const y = mutationError as Error;
@@ -114,7 +115,6 @@ export default function RegistrationPage() {
             background: "#FFFFFF",
             py: "3rem",
             boxShadow: "0.5px 0.5px 0px 0px #7C7B7B",
-            // border:"solid red"s
           }}
         >
           {error?.length ? (
@@ -264,19 +264,23 @@ export default function RegistrationPage() {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="gender"
-              value={value}
+              defaultValue="male"
+              value={value.gender}
               onChange={handleChange}
             >
+              <FormControlLabel 
+              value="male" 
+              control={<Radio />} 
+              label="Male" />
+
               <FormControlLabel
                 value="female"
                 control={<Radio />}
                 label="Female"
               />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
             </RadioGroup>
           </Grid>
           <Grid item md={12} xs={12}>
-            {/* <Link href="/thumbprint"> */}
             {isLoading ? (
               <CircularColor />
             ) : (
@@ -297,7 +301,12 @@ export default function RegistrationPage() {
             )}
             {/* </Link> */}
           </Grid>
+
         </Grid>
+        {/* <SuccessModal
+        open={openSuccessModal}
+        onClose={handleCloseSuccessModal}
+      /> */}
       </Box>
     </AdminLayOut>
   );

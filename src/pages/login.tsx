@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 
+
 export default function LoginPage() {
   const [data, setData] = React.useState<ILogin>({ email: "", password: "" })
   const [loading, setLoading] = React.useState(false)
@@ -21,7 +22,6 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -52,8 +52,6 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             background: "#FFFFFF",
             width: {xs:"100%"},
             maxWidth: "600px",
-            // minHeight: "70vh",
-            // height:"100%",
             mt: "9rem",
             mb: "9rem",
             py: "3rem",
@@ -76,7 +74,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               name="email"
               value={data.email}
               onChange={handleChange}
-              label="Enter Email Address:"
+              defaultValue="Enter Email "
               id="fullWidth"
               sx={{ border: "#48A2E9" }}
             />
@@ -87,7 +85,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             name="password"
             value={data.password}
             onChange={handleChange}
-            label="Enter Password" 
+            defaultValue="Enter Password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -102,7 +100,6 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             }
             />
           </Box>
-          {/* <Link href="/selectAction"> */}
           {loading ? (<CircularColor />)
           :(
             <RoundButton
@@ -119,7 +116,6 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               LOG IN
             </RoundButton>
           )}
-          {/* </Link> */}
           <Typography
             sx={{
               textAlign: "end",

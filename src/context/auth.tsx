@@ -9,16 +9,15 @@ import { ReactElement, ReactNode, createContext,  useContext, useEffect, useStat
 
 interface AuthContextType{
     auth:any;
-    AdminLogin:(data: ILogin) => Promise<any>;
+    AdminLogin:(data: ILogin) =>Promise<any>;
     logout:()=>void;
     islLoggedIn:boolean;
-   
-
 }
+
 const usersContext= createContext({
     auth:{},
     error:'',
-    AdminLogin: async(data: any) =>{},
+    AdminLogin: async(data: any)=>{},
     logout:()=>{},
     islLoggedIn: false,
   })
@@ -27,10 +26,12 @@ const usersContext= createContext({
 export default function Context ({children}: {children: ReactNode}){
     const [error, setError] = React.useState<string>(''); 
     const [islLoggedIn, setILoggedIn] =React.useState(false)
+    const [auth, setAuth] = useState({});
     useEffect(() => {
         let tokens = JSON.parse(localStorage.getItem("token") || "{}");
         if(tokens){
             setToken(tokens?.token);
+            setAuth(tokens);
                 }
       }, []);
       
@@ -41,6 +42,7 @@ export default function Context ({children}: {children: ReactNode}){
         .then((res)=>{
           localStorage.setItem('token', JSON.stringify(res.data));
           setToken(res.data.token);
+          setAuth({...res.data});
           setILoggedIn(true)
           console.log(res.data)
           router.push("/dashboard")
@@ -60,7 +62,7 @@ export default function Context ({children}: {children: ReactNode}){
       };
 
       const value={
-        auth: {},
+        auth,
         AdminLogin,
         error,
         logout,

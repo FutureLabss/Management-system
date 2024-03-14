@@ -37,7 +37,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { DRAWER_WIDTH } from '@/lib/constants/layout';
 import DrawerLayout from './drawer';
 import { IconType } from 'react-icons';
-
+import {useAuthContext} from "../../context/auth"
 
 interface Props {
   /**
@@ -71,6 +71,7 @@ const links: NavLinks[] = [
 
 
 export default function AppBarLayout(props: Props) {
+  const {auth} = useAuthContext()
   const { window, title } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -307,11 +308,10 @@ export default function AppBarLayout(props: Props) {
           <Avatar
           sx={{ width: 56, height: 56 }}
           src={avatar.src} />
-          <Box mt="7%">
-            <Typography sx={{color:"black"}}>Daniel.k.o</Typography>
+          <Box mt="8%">
+            <Typography sx={{color:"black"}}>FutureLabs</Typography>
             <Typography  sx={{color:"black"}}>Admin</Typography>
           </Box>
-
       </Stack>
           </Stack>
           </Box>

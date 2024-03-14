@@ -1,13 +1,25 @@
 import AppBarLayout from "@/components/layout/appbar";
 import DrawerLayout from "@/components/layout/drawer";
+import { useAuthContext } from "@/context/auth";
 import { DRAWER_WIDTH } from "@/lib/constants/layout";
 import { Box, Container, Stack } from "@mui/material";
+import { useRouter } from "next/router";
+import { useContext, useEffect } from "react";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
   title: string;
 }
 export default function AdminLayOut({ children, title }: AdminLayoutProps) {
+  const { islLoggedIn } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!islLoggedIn) {
+      router.push("/login");
+    }
+  }, [islLoggedIn, router]);
+
   return (
     <>
       <Container
@@ -26,7 +38,7 @@ export default function AdminLayOut({ children, title }: AdminLayoutProps) {
             sx={{
               backgroundColor: "#F0F0F0",
               flexGrow: 1,
-              width: { xs: "100%", sm: `calc(100% - ${DRAWER_WIDTH})` },
+              width:{ xs: "100%", sm: `calc(100% - ${DRAWER_WIDTH})` },
               minHeight: `calc(100vh - 20px)` ,
             }}
           >
