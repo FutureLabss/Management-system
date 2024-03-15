@@ -1,19 +1,18 @@
 import { ICard } from "../../../lib/interface/ICard";
-import theme from "../../../styles/theme/theme";
-import { Box, Card, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Card, Stack, Typography } from "@mui/material";
 
-export default function StatisticsCard(props: ICard) {
-  const theme = useTheme();
+export default function StatisticsCard(item:ICard) {
   return (
     <>
       <Card
-        elevation={0}
+      elevation={0}
+      key={item.field}
         sx={{
           borderRadius: "4px",
           width: "100%",
-          // maxWidth:{md:"300px"},
+          display:"flex",
           px: "24px",
-          backgroundColor: props.color || "#08B5391A",
+          backgroundColor: item.color || "#08B5391A",
         }}
       >
         <Stack
@@ -30,7 +29,7 @@ export default function StatisticsCard(props: ICard) {
           gap="3rem"
         >
           <Box color="#48A2E9" mt="1rem">
-            <props.icon size={48} color="inherit" />
+            <item.icon size={48} color="inherit" />
           </Box>
           <Stack sx={{flexWrap:"wrap"}}>
             <Box sx={{ mt: "px" }}>
@@ -42,11 +41,11 @@ export default function StatisticsCard(props: ICard) {
                 }}
                 color={"primary"}
               >
-                {props.numberofpeople}
+                {item.value}
               </Typography>
             </Box>
             <Typography alignItems="center" variant="h4">
-              {props.gender}
+              {item.gender}
             </Typography>
           </Stack>
         </Stack>

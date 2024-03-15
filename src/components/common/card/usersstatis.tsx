@@ -4,24 +4,16 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import StatisticsCard from "./card";
+import { useUsersStats } from "@/hooks/query/stats";
+import { IStats } from "@/lib/interface/IStats";
 
 export default function UsersStatis() {
+  const {data:stats}=useUsersStats()
   return (
-    // <Grid
-    //     container
-    //     rowSpacing={{ md: 7, xs: 2, sm: 2 }}
-    //     columnSpacing={{ md: 2, xs: 2, sm: 2 }}
-    //   >
-    //     {StatistData.map((item: ICard) => (
-    //       <Grid item md={4} xs={12} sm={6} key={item.field} display="flex">
-    //         <StatisticsCard {...item} />
-    //       </Grid>
-    //     ))}
-    //   </Grid>
     <Stack direction="row" flexWrap="wrap" width="100%" justifyContent={"space-between"} gap="1rem">
       {StatistData.map((item: ICard) => (
-        <Box key={item.field} maxWidth={{ md: "280px" }} flexGrow={1}>
-          <StatisticsCard {...item} />
+        <Box key={item.field} maxWidth={{ md: "18rem" }}  display="flex" flexGrow={1}>
+          <StatisticsCard {...item} value={stats?.[item.field as keyof IStats] ?? 0} />
         </Box>
       ))}
     </Stack>

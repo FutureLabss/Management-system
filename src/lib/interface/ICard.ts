@@ -3,7 +3,7 @@ import { IconType } from "react-icons";
 
 export interface ICard{
     icon:IconType,
-    numberofpeople:number,
+    value:number,
     gender:string,
     field:string,
     color?:string;

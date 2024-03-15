@@ -50,13 +50,13 @@ export default function DrawerLayout() {
   };
   
   const handleLogout = ()=>{
-    console.log("logging out.....")
-   logout();
+    logout();
     router.push('/login'); 
+    console.log("logging out.....")
    
   };
   const links: NavLinks[] = [
-    { title: "Dashboard", icon: LuLayoutDashboard, path: "/dashboard" },
+    { title: "Dashboard", icon: LuLayoutDashboard, path: "/" },
     {
       title: "User Management",
       path: "/users",
@@ -67,7 +67,7 @@ export default function DrawerLayout() {
         { title: "Deactivated Users", path: "" },
       ],
     },
-    { title: "Log Out", icon: RiLogoutBoxRLine, path: "", onClick: handleLogout},
+    { title: "Log Out", icon: RiLogoutBoxRLine, path: "/login", onClick: handleLogout},
   ];
 
   return (
@@ -92,7 +92,7 @@ export default function DrawerLayout() {
           anchor="left"
         >
           <Link href="/">
-            <Typography variant="h1" sx={{ px: { xs: "2rem", md: "1rem" } }}>
+            <Typography variant="h2" sx={{ px: { xs: "2rem", md: "1rem" } }}>
               WATCHLIST
             </Typography>
           </Link>

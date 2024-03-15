@@ -72,6 +72,7 @@ const links: NavLinks[] = [
 
 export default function AppBarLayout(props: Props) {
   const {auth} = useAuthContext()
+  console.log({auth})
   const { window, title } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 

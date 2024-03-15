@@ -20,21 +20,17 @@ export default function LoginPage() {
   const [loading, setLoading] = React.useState(false)
   const {AdminLogin, error} = useAuthContext();
   const [showPassword, setShowPassword] = React.useState(false);
-
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setData({ ...data, [name]: value });
-    console.log(data)
-
 }
 const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   try {
       setLoading(true);
      await AdminLogin(data)
-     console.log(data)
       setLoading(false);
     } catch (e: any) {
       setLoading(false);
@@ -48,10 +44,10 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           onSubmit={handleClick}
           sx={{
             mx: "auto",
-            border: "1px solid #48A2E9",
-            background: "#FFFFFF",
+            // border: "1px solid #48A2E9",
+            // background: "#FFFFFF",
             width: {xs:"100%"},
-            maxWidth: "600px",
+            maxWidth: "550px",
             mt: "9rem",
             mb: "9rem",
             py: "3rem",
@@ -59,7 +55,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           }}
         >
           <Typography
-          variant="h1"
+          variant="h2"
             sx={{ textAlign: "center", 
             color: "#48A2E9",
             }}
@@ -68,7 +64,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           </Typography>
           <Typography color="error" variant="h6"
           sx={{ mt: "1rem", textAlign:"center" }}>{error}</Typography>
-          <Box sx={{ mt: "3rem" }}>
+          <Box sx={{ mt: "2rem" }}>
             <TextField
               fullWidth
               name="email"
@@ -79,7 +75,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               sx={{ border: "#48A2E9" }}
             />
           </Box>
-          <Box sx={{ mt: "3rem" }}>
+          <Box sx={{ mt: "2rem" }}>
             <OutlinedInput 
             fullWidth
             name="password"
@@ -100,6 +96,17 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             }
             />
           </Box>
+          <Typography
+            sx={{
+              textAlign: "end",
+              mt: "0.75rem",
+              color: "#7C7B7B",
+              fontSize: "1rem",
+              textTransform:"lowerCase"
+            }}
+          >
+            FORGOT YOUR PASSWORD?
+          </Typography>
           {loading ? (<CircularColor />)
           :(
             <RoundButton
@@ -116,16 +123,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               LOG IN
             </RoundButton>
           )}
-          <Typography
-            sx={{
-              textAlign: "end",
-              mt: "1.5rem",
-              color: "#7C7B7B",
-              fontSize: "1rem",
-            }}
-          >
-            FORGOT YOUR PASSWORD?
-          </Typography>
+          
         </Box>
       </Stack>
     </>

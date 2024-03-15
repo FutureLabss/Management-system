@@ -33,7 +33,7 @@ export default function SuccessModal(props: IsuccessModal) {
     <Dialog
       sx={{
         ".MuiDialog-paper": {
-          width: "300px",
+          width: "350px",
           height: "231px",
           borderRadius: "14px",
           mt: "5%",
@@ -47,8 +47,8 @@ export default function SuccessModal(props: IsuccessModal) {
       aria-describedby="alert-dialog-slide-description"
       open={open}
     >
-      <Box sx={{ mx: "auto", py: "4rem", px: "3rem" }}>
-        <DialogTitle
+      <Box sx={{ mx: "auto", py: "1.5rem", px: "3rem" }}>
+        <Typography
           sx={{
             fontSize: { md: "1rem", xs: "1rem" },
             color: "#7C7B7B",
@@ -56,7 +56,7 @@ export default function SuccessModal(props: IsuccessModal) {
           }}
         >
           Deactivation successful!
-        </DialogTitle>
+        </Typography>
         <DialogContent>
           <Typography
             variant="body1"

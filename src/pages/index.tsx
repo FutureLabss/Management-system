@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Box } from '@mui/material'
 import LoginPage from './login'
+import DashBoardPage from './dashboard'
 
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
       </Head>
       {/* <AdminLayOut> */}
         <Box sx={{mx:"auto"}}>
-      <LoginPage />
+      <DashBoardPage />
         </Box>
 
       {/* </AdminLayOut> */}

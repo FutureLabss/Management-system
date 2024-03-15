@@ -13,7 +13,7 @@ export default function SelectActionPage() {
             border: "1px solid #48A2E9",
             background: "#FFFFFF",
             width: "100%",
-            maxWidth: "600px",
+            maxWidth: "550px",
             minHeight: "70vh",
             mt: "9rem",
             py: "8rem",

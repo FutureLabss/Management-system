@@ -36,27 +36,19 @@ export default function WaringModal(props: IWarningModal) {
   const router = useRouter();
 
   const handleRedirect = () =>{
-    // e.preventDefault();
     let tokens = JSON.parse(localStorage.getItem("token") || "{}");
     const objectLength = Object.entries(tokens).length;
     console.log(objectLength);
     if(objectLength > 0){
         router.push("/registeruser")
-        // console.log("i am log in")
     }
     else{
-        router.push("/")
-    // console.log("i am not log in")
+        router.push("/login")
     }
-    // console.log(tokens)
-
 }
 const handleClose = ()=>{
     onClose()
 }
-
-
-
   return (
     <Box>
       <Dialog
@@ -65,7 +57,6 @@ const handleClose = ()=>{
             width: "300px",
             height: "231px",
             borderRadius: "14px",
-            // background: theme.palette.secondary.light,
             mt: "5%",
           },
         }}

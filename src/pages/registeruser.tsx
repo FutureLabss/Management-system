@@ -102,7 +102,7 @@ export default function RegistrationPage() {
 
   return (
     <AdminLayOut title={"Register New User"}>
-      <Box sx={{ backgroundColor: "#FFFFFF" }}>
+      <Box sx={{ backgroundColor: "#FFFFFF", p:"0px",  width: "100%", }}>
         <Grid
           container
           component="form"
@@ -110,11 +110,11 @@ export default function RegistrationPage() {
           sx={{
             width: "100%",
             maxWidth: "700px",
-            border: "0.5px solid #7C7B7B",
+            // border: "0.5px solid #7C7B7B",
             px: "5em",
             background: "#FFFFFF",
             py: "3rem",
-            boxShadow: "0.5px 0.5px 0px 0px #7C7B7B",
+            // boxShadow: "0.5px 0.5px 0px 0px #7C7B7B",
           }}
         >
           {error?.length ? (
