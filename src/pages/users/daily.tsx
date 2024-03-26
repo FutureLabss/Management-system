@@ -28,7 +28,7 @@ export default function PresentUsers(){
          {value == 2 ? <DailyUserTabel /> : null }
       </Box>
       <Box>
-        <BasicPagination />
+        {/* <BasicPagination /> */}
       </Box>
             </Stack>
         </AdminLayOut>
