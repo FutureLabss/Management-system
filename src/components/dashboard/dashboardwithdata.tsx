@@ -35,7 +35,7 @@ export default function DashBoardWithData() {
           <UsersStatis />
         </Box>
         <Box>
-          <DailyUserTabel clickable={false} />
+          <DailyUserTabel />
         </Box>
         <Box>
           <DashoardUsers />
