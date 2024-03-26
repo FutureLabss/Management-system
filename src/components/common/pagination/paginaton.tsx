@@ -9,7 +9,7 @@ import { IAPIFilter } from "@/lib/query";
 
 interface IProps{
 setFilter:React.Dispatch<React.SetStateAction<IAPIFilter>>,
-filter: IAPIFilter,
+filter: {},
 activepage:number,
 totalPages:number,
 }
