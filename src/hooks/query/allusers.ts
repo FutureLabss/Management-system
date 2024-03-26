@@ -1,7 +1,7 @@
-import { getProfile,  } from "@/services/api/profile";
-import { IQueryArgs } from "../../lib/query";
+import { getProfile, getProfilePagination,  } from "@/services/api/profile";
+import { IAPIFilter, IPaginatedQueryArgs, IQueryArgs } from "../../lib/query";
 import {  UserModel } from "@/lib/interface/Iregister";
-import { useGetResourcesQuery } from "../helper/query";
+import { useGetResourcesQuery, usePaginationQuery } from "../helper/query";
 
 // getProfile
 export function useGetUsers() {
@@ -10,4 +10,13 @@ export function useGetUsers() {
     callback: () => getProfile(),
   };
   return useGetResourcesQuery(users);
+}
+
+
+export function usePaginatedUsers(filter: IAPIFilter) {
+  const pagination: IPaginatedQueryArgs<UserModel[]> = {
+    key: ["users", filter],
+    callback: () => getProfilePagination(filter ),
+  };
+  return usePaginationQuery(pagination);
 }

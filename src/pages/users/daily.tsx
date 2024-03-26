@@ -1,6 +1,6 @@
 import BasicPagination from "@/components/common/pagination/paginaton";
 import SearchInput from "@/components/common/search/search";
-import TwoScrollableTabs from "@/components/common/tabs/persent/presents";
+import UserDetailsTabs from "@/components/common/tabs/daily/daily";
 import DailyUserTabel from "@/components/dashboard/tabel";
 import AdminLayOut from "@/layout/admin";
 import { Box, Stack } from "@mui/material";
@@ -15,15 +15,17 @@ export default function PresentUsers(){
             <SearchInput /> 
           </Box>
         <Box mx="auto" sx={{ width:"100%", maxWidth:500}}>
-        <TwoScrollableTabs
+        <UserDetailsTabs
          onChange={setValue} 
-         name1={"Most Present Users"} 
-        name2={"Most Absent Users"} 
+        name1={"Daily"} 
+        name2={"Weekly"} 
+        name3={"Monthly"} 
         />
         </Box>
         <Box mt="1rem" width="100%">
          {value == 0 ? <DailyUserTabel /> : null }
          {value == 1 ? <DailyUserTabel /> : null }
+         {value == 2 ? <DailyUserTabel /> : null }
       </Box>
       <Box>
         <BasicPagination />
@@ -33,3 +35,5 @@ export default function PresentUsers(){
 
     )
 }
+
+// UserDetailsTabs

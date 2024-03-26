@@ -13,10 +13,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { GoDotFill } from "react-icons/go";
+import OTPInput from "@/components/user/otpinput";
 
 
 
-export default function LoginPage() {
+export default function UsersLoginPage() {
   const [data, setData] = React.useState<ILogin>({ email: "", password: "" })
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = useState<string[]>([]);
@@ -65,7 +66,27 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           >
             WATCHLIST
           </Typography>
-            {error?.length ? (
+          <Typography
+          variant="subtitle1"
+            sx={{ textAlign: "center", 
+            color: "#48A2E9",
+            }}
+          >
+          Reset Password
+          </Typography>
+          <Typography
+          variant="body1"
+            sx={{ textAlign: "center", 
+            color: "#48A2E9",
+            width:"100%",
+            maxWidth:"100px",
+            mx:"auto"
+            }}
+          >
+          Enter the 5 digits code you received on
+            your email.
+          </Typography>
+            {/* {error?.length ? (
             <Grid>
               {error?.map((e) => (
                 <Typography key={e} color="error" variant="body2">
@@ -74,51 +95,12 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
                 </Typography>
               ))}
             </Grid>
-          ) : null}
-          <Box sx={{ mt: "2rem" }}>
-            <TextField
-              fullWidth
-              name="email"
-              value={data.email}
-              onChange={handleChange}
-              placeholder="Enter Email"
-              id="fullWidth"
-              sx={{ border: "#48A2E9" }}
-            />
-          </Box>
-          <Box sx={{ mt: "2rem" }}>
-            <OutlinedInput 
-            fullWidth
-            name="password"
-            value={data.password}
-            onChange={handleChange}
-            placeholder="Enter Password"
-            type={showPassword ? 'text' : 'password'}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            />
-          </Box>
-          <Typography
-          variant="subtitle1"
-            sx={{
-              textAlign: "end",
-              mt: "0.75rem",
-              color: "#7C7B7B",
-              textTransform:"lowerCase"
-            }}
-          >
-            FORGOT YOUR PASSWORD?
-          </Typography>
-          {loading ? (<CircularColor />)
+          ) : null} */}
+         <Box>
+            <OTPInput />
+         </Box>        
+
+          {/* {loading ? (<CircularColor />)
           :(
             <RoundButton
               variant="contained"
@@ -128,12 +110,12 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
                 mt: "2rem",
                 width: "100%",
                 color: "#fff",
-                fontSize: "1.5rem",
+                fontSize: "1rem",
               }}
             >
-              LOG IN
+             Continue
             </RoundButton>
-          )}
+          )} */}
           
         </Box>
       </Stack>

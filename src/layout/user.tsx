@@ -1,6 +1,7 @@
 import SimpleBackdrop from "@/components/common/loading/backdrop/homepage";
 import AppBarLayout from "@/components/layout/admn/appbar";
-import DrawerLayout from "@/components/layout/admn/drawer";
+import UserAppBarLayout from "@/components/layout/user/appbar";
+import SideBarLayout from "@/components/layout/user/sidebar";
 import { useAuthContext } from "@/context/auth";
 import { DRAWER_WIDTH } from "@/lib/constants/layout";
 import { Box, Container, Stack } from "@mui/material";
@@ -11,7 +12,7 @@ interface AdminLayoutProps {
   children: React.ReactNode;
   title: string;
 }
-export default function AdminLayOut({ children, title }: AdminLayoutProps) {
+export default function UserLayOut({ children, title }: AdminLayoutProps) {
   const { islLoggedIn, loaded } = useAuthContext();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -33,14 +34,13 @@ export default function AdminLayOut({ children, title }: AdminLayoutProps) {
       <Container
         sx={{
           backgroundColor: "#FFFFFF",
-          // border:"solid blue",
         }}
         disableGutters
         maxWidth={false}
       >
         <Stack direction="row" columnGap={0}>
           <Box>
-            <DrawerLayout />
+            <SideBarLayout />
           </Box>
           <Box
             sx={{
@@ -51,7 +51,7 @@ export default function AdminLayOut({ children, title }: AdminLayoutProps) {
             }}
           >
             <Box>
-              <AppBarLayout title={title} />
+              <UserAppBarLayout title={title} />
             </Box>
             <Box  p={{xs:"1em",sm:"1.5rem", md:"3rem"}}>{children}</Box>
           </Box>

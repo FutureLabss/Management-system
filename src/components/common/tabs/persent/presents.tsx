@@ -3,8 +3,19 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import theme from '@/styles/theme/theme';
+import DailyUserTabel from '@/components/dashboard/tabel';
 
-export default function ScrollableTabsButtonPrevent() {
+
+
+interface Props {
+    name1?: string
+    name2?: string
+    onChange?: (index: number) => void
+  
+  }
+  
+export default function ScrollableTabsButtonPrevent(props:Props) {
+  const {name1, name2, onChange} = props
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -12,9 +23,10 @@ export default function ScrollableTabsButtonPrevent() {
   };
 
   return (
-    <Box sx={{ maxWidth: { xs: 320, sm: 500 },
+    <Box sx={{
      bgcolor: 'background.paper',
-     borderRadius:" 8px",
+     borderRadius:" 15px",
+     width:"100%"
       }}>
       <Tabs
         value={value}
@@ -30,18 +42,22 @@ export default function ScrollableTabsButtonPrevent() {
         '.Mui-selected': {
         backgroundColor: theme.palette.primary.main,
         color: "#FFFFFF !important",
-        fontSize:{md:"0.833rem", xs:"1rem"},
+        fontSize:{md:"0.73rem", xs:"1rem"},
             fontWeight:"700",
-            // padding:"5px 6px",
+            margin:"5px 10px",
+            borderRadius: "20px",
         },
         borderRadius: "6px",
         }}
       >
-        <Tab label="Most Present Users"
+        <Tab label={props.name1}
         color="primary"
+         value="0" 
          />
-        <Tab label="Most Absent Users" />
+        <Tab label={props.name2} 
+         value="1" />
       </Tabs>
+      
     </Box>
   );
 }

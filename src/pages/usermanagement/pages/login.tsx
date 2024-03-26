@@ -1,6 +1,6 @@
 import RoundButton from "@/components/common/roundbutton/roundbutton";
 import { ILogin } from "@/lib/interface/Ilogin";
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
 import React from "react";
@@ -16,7 +16,7 @@ import { GoDotFill } from "react-icons/go";
 
 
 
-export default function LoginPage() {
+export default function UsersLoginPage() {
   const [data, setData] = React.useState<ILogin>({ email: "", password: "" })
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = useState<string[]>([]);
@@ -65,6 +65,14 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           >
             WATCHLIST
           </Typography>
+          <Typography
+          variant="subtitle1"
+            sx={{ textAlign: "center", 
+            color: "#48A2E9",
+            }}
+          >
+            LogIn to your user dashboard
+          </Typography>
             {error?.length ? (
             <Grid>
               {error?.map((e) => (
@@ -107,17 +115,39 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             }
             />
           </Box>
+          <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            width: "100%", 
+            mt: "1rem",
+            // border:"solid red"
+          }}>
           <Typography
           variant="subtitle1"
             sx={{
               textAlign: "end",
               mt: "0.75rem",
               color: "#7C7B7B",
-              textTransform:"lowerCase"
+              textTransform:"lowerCase",
+            //   textDecoration: "underline",
+            //   textDecorationColor: "#48A2E9",
             }}
           >
             FORGOT YOUR PASSWORD?
           </Typography>
+          <Divider 
+          sx={{
+              width:"35%",
+            ".MuiDivider-flexItem":{
+            },
+            backgroundColor:"#48A2E9",
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"end"
+          }}  />
+          </Box>
           {loading ? (<CircularColor />)
           :(
             <RoundButton
@@ -131,7 +161,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
                 fontSize: "1.5rem",
               }}
             >
-              LOG IN
+             CONFIRM
             </RoundButton>
           )}
           

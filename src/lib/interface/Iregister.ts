@@ -27,7 +27,7 @@ export interface UserModel extends CreateUserModel {
   id: string;
   status:boolean;
   lastClockedIn:string
-  lastClockedOut:string
+  lastClockedOut:string;
 }
 
 export interface DashBoardUser extends UserModel{

@@ -14,10 +14,10 @@ export interface IAPIFilter {
     callback: (arg?:unknown) => Promise<IReturn>;
   }
   
-//   export interface IPaginatedQueryArgs<IReturn> {
-//     key: [string, IAPIFilter?];
-//     callback: (arg: unknown) => Promise<IPaginatedReturns<IReturn>>;
-//   }
+  export interface IPaginatedQueryArgs<IReturn> {
+    key: [string, IAPIFilter?];
+    callback: (arg: unknown) => Promise<IPaginatedReturns<IReturn>>;
+  }
   
   export interface IMutationResponse <IArg = unknown, IReturn = unknown> {
     mutate: unknown;
@@ -31,15 +31,15 @@ export interface IAPIFilter {
     enabled: boolean;
   }
   
-//   export interface IPaginatedReturns<IReturn = unknown> {
-//     count(count: any): unknown;
-//     data: IReturn;
-//     pagination: {
-//       limit: number;
-//       page: number;
-//       count: number;
-//     };
-//   }
+  export interface IPaginatedReturns<IReturn> {
+    count(count:any): number;
+    data: IReturn;
+    pagination: {
+      limit: number;
+      page: number;
+      count: number;
+    };
+  }
   
   export interface IMutationHook<IReturn = unknown> {
     onSuccess?: (data?: IReturn) => void;

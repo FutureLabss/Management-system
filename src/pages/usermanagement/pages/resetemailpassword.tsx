@@ -16,7 +16,7 @@ import { GoDotFill } from "react-icons/go";
 
 
 
-export default function LoginPage() {
+export default function UsersLoginPage() {
   const [data, setData] = React.useState<ILogin>({ email: "", password: "" })
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = useState<string[]>([]);
@@ -65,6 +65,26 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           >
             WATCHLIST
           </Typography>
+          <Typography
+          variant="subtitle1"
+            sx={{ textAlign: "center", 
+            color: "#48A2E9",
+            }}
+          >
+          Reset Password
+          </Typography>
+          <Typography
+          variant="body1"
+            sx={{ textAlign: "center", 
+            color: "#48A2E9",
+            width:"100%",
+            maxWidth:"200px",
+            mx:"auto"
+            }}
+          >
+          Enter the email address linked to your
+           account and we will send you a 5digit code.
+          </Typography>
             {error?.length ? (
             <Grid>
               {error?.map((e) => (
@@ -85,39 +105,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               id="fullWidth"
               sx={{ border: "#48A2E9" }}
             />
-          </Box>
-          <Box sx={{ mt: "2rem" }}>
-            <OutlinedInput 
-            fullWidth
-            name="password"
-            value={data.password}
-            onChange={handleChange}
-            placeholder="Enter Password"
-            type={showPassword ? 'text' : 'password'}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            />
-          </Box>
-          <Typography
-          variant="subtitle1"
-            sx={{
-              textAlign: "end",
-              mt: "0.75rem",
-              color: "#7C7B7B",
-              textTransform:"lowerCase"
-            }}
-          >
-            FORGOT YOUR PASSWORD?
-          </Typography>
+          </Box>         
           {loading ? (<CircularColor />)
           :(
             <RoundButton
@@ -128,10 +116,10 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
                 mt: "2rem",
                 width: "100%",
                 color: "#fff",
-                fontSize: "1.5rem",
+                fontSize: "1rem",
               }}
             >
-              LOG IN
+             Continue
             </RoundButton>
           )}
           

@@ -62,7 +62,7 @@ export default function DrawerLayout() {
       path: "/users",
       icon: FaUpDownLeftRight,
       children: [
-        { title: "User History", path: "" },
+        { title: "User History", path: "/users/daily" },
         { title: "Present / Absent Users", path: "/users/presentusers" },
         { title: "Deactivated Users", path: "" },
       ],

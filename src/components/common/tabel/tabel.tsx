@@ -24,8 +24,9 @@ import { useDeactivateUser } from "@/hooks/mutation/deactivate";
 import BasicPagination from "../pagination/paginaton";
 import { useGetSingleUser } from "@/hooks/query/getsingleuser";
 import { useRouter } from "next/router";
-import { useGetUsers } from "@/hooks/query/allusers";
+import { useGetUsers, usePaginatedUsers } from "@/hooks/query/allusers";
 import SuccessModal from "../modal/deactivationmodal/successModal";
+import { IAPIFilter } from "@/lib/query";
 
 interface TableColum {
   title: string;
@@ -46,12 +47,18 @@ const tableColumns: TableColum[] = [
 export default function UserManagementTable() {
   const theme = useTheme();
   const [activeUser, setActiveUser] = React.useState<UserModel>();
+  const [filter, setFilter] = React.useState<IAPIFilter>({ page: 1, pageSize:10 });
   const { mutate: deactivate, isLoading: actionLoader } = useDeactivateUser({
     onSuccess: () => {},
   });
   const router = useRouter();
-  const { id }: any = router.query;
-  const { data: users, loading:isLoading, isFetching } = useGetUsers();
+  const {
+    data: users,
+    loading: isLoading,
+    isFetching,
+    totalPages,
+    currentPage,
+  } = usePaginatedUsers(filter);
   const [openSuccessModal, setOpenSuccessModal] = React.useState(false);
 
   const handleOpenModal = (
@@ -116,7 +123,7 @@ export default function UserManagementTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {isLoading  || isFetching? (
+            {isLoading || isFetching ? (
               <TableLoading />
             ) : users ? (
               <>
@@ -177,13 +184,13 @@ export default function UserManagementTable() {
               </>
             ) : (
               <Box
-                sx={{ border: "solid", width: "100%", maxWidth: 500 }}
+                sx={{  width: "100%", maxWidth: 500 }}
                 mx="auto"
               >
                 <Typography
                   textAlign="center"
                   variant="h4"
-                  sx={{ border: "solid red", width: "100%" }}
+                  sx={{  width: "100%" }}
                 >
                   No Data
                 </Typography>
@@ -203,7 +210,12 @@ export default function UserManagementTable() {
         />
       </TableContainer>
       <Box>
-        <BasicPagination />
+        <BasicPagination
+          activepage={currentPage}
+          totalPages={totalPages}
+          setFilter={setFilter}
+          filter={filter}
+        />
       </Box>
     </Box>
   );

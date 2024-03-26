@@ -23,7 +23,7 @@ interface AuthContextType {
 
 const usersContext = createContext({
   auth: {},
-  error: "",
+  
   AdminLogin: async (data: any) => {},
   logout: () => {},
   islLoggedIn: false,
@@ -37,8 +37,8 @@ export default function Context({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState({});
   useEffect(() => {
     let tokens = JSON.parse(localStorage.getItem("token") || "{}");
-    if (tokens?.token) {
-      setToken(tokens?.token);
+    if (tokens?.accessToken) {
+      setToken(tokens?.accessToken);
       setILoggedIn(true)
       setAuth(tokens);
     }
@@ -50,7 +50,7 @@ export default function Context({ children }: { children: ReactNode }) {
       .post("/auth/login", data)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data));
-        setToken(res.data.token);
+        setToken(res.data.accessToken);
         setAuth({ ...res.data });
         setILoggedIn(true);
         console.log(res.data);
@@ -58,8 +58,11 @@ export default function Context({ children }: { children: ReactNode }) {
       })
       .catch((e) => {
         const message = e.response?.data?.message || "Network Error";
-        setError(message);
-        console.log(e);
+        if (Array.isArray(message)) {
+          const error = message.join("\n");
+          console.log({ error });
+          throw new Error(error);
+        }
         throw new Error(message);
       });
     return Promise;

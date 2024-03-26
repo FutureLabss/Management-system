@@ -16,6 +16,7 @@ import TableLoading from "../common/loading/tableloading";
 import avatar from '../../images/avatar.png'
 import { useGetUsers } from "@/hooks/query/allusers";
 import { useRouter } from "next/router";
+import BasicPagination from "../common/pagination/paginaton";
 
 
 
@@ -34,7 +35,7 @@ const tableColumns: TableColum[] = [
   { title: "Last clocked-out", field: "lastClockedOut" },
 ];
 
-export default function DailyUserTabel() {
+export default function UsersTabel() {
   const theme = useTheme();
   const router = useRouter();
   const { id }: any = router.query;
@@ -116,6 +117,7 @@ export default function DailyUserTabel() {
           ):(<Typography>NO data yet</Typography>)}
         </TableBody>
       </Table>
+     {/* <BasicPagination /> */}
     </TableContainer>
   );
 }

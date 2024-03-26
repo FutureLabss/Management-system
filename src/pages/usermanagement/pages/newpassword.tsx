@@ -1,6 +1,6 @@
 import RoundButton from "@/components/common/roundbutton/roundbutton";
 import { ILogin } from "@/lib/interface/Ilogin";
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
 import React from "react";
@@ -16,7 +16,7 @@ import { GoDotFill } from "react-icons/go";
 
 
 
-export default function LoginPage() {
+export default function UsersLoginPage() {
   const [data, setData] = React.useState<ILogin>({ email: "", password: "" })
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = useState<string[]>([]);
@@ -65,6 +65,26 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
           >
             WATCHLIST
           </Typography>
+          <Typography
+          variant="subtitle1"
+            sx={{ textAlign: "center", 
+            color: "#48A2E9",
+            }}
+          >
+            Reset Password
+          </Typography>
+          <Typography
+          variant="body1"
+            sx={{ textAlign: "center",
+            color: "#48A2E9",
+            width:"100%",
+            maxWidth:"200px",
+            mx:"auto"
+            }}
+          >
+            Enter the 5 digits code you received on
+            your email.
+          </Typography>
             {error?.length ? (
             <Grid>
               {error?.map((e) => (
@@ -81,7 +101,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
               name="email"
               value={data.email}
               onChange={handleChange}
-              placeholder="Enter Email"
+              placeholder="Enter New Password"
               id="fullWidth"
               sx={{ border: "#48A2E9" }}
             />
@@ -92,7 +112,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             name="password"
             value={data.password}
             onChange={handleChange}
-            placeholder="Enter Password"
+            placeholder="Confirm Password"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -107,17 +127,6 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
             }
             />
           </Box>
-          <Typography
-          variant="subtitle1"
-            sx={{
-              textAlign: "end",
-              mt: "0.75rem",
-              color: "#7C7B7B",
-              textTransform:"lowerCase"
-            }}
-          >
-            FORGOT YOUR PASSWORD?
-          </Typography>
           {loading ? (<CircularColor />)
           :(
             <RoundButton
@@ -131,7 +140,7 @@ const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
                 fontSize: "1.5rem",
               }}
             >
-              LOG IN
+             SAVE
             </RoundButton>
           )}
           

@@ -28,13 +28,13 @@ const tableColumns: TableColum[] = [
   { title: "ClockIn", field: "ClockIn" },
 ];
 
-const data = [{ title: "dsfds" }, { title: "dsfds" }, { title: "dsfds" }];
+const data = [{ title: "dsfds" }, { title: "dsfds" }, { title: "dsfds" },{ title: "dsfds" }, { title: "dsfds" }];
 
 export default function SingleUserComponent(props: UserModel) {
   const { data: users, loading } = useGetUsers();
   return (
-    <Stack direction="row">
-      <Stack gap="0.5rem" border="1px solid gray">
+    <Stack direction="row" gap="0.75em">
+      <Stack gap="0.5rem" >
         <Box>
           <Image
             src={props.avatarUrl ?? avatar.src}
@@ -121,7 +121,7 @@ export default function SingleUserComponent(props: UserModel) {
               >
                 <TableCell>Date</TableCell>
                 <TableCell>Time</TableCell>
-                <TableCell>Clock-Action</TableCell>
+                <TableCell >Clock-Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody
